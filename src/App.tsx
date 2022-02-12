@@ -6,8 +6,8 @@ import { GlobalStyle } from "./styles/global";
 const App = () => {
   return (
     <div className="App">
-      {/* <Login /> */}
-      <Home />
+      <Login />
+      {/* <Home /> */}
       <GlobalStyle />
     </div>
   );

@@ -1,6 +1,9 @@
+import React from "react";
 import { Container, Content, Fields, Input, Button, SpanError } from "./styles";
 
 interface Props {
+  value: string;
+  changeValue: (value: string) => void;
   title: string;
   type: string;
   placeholder?: string;
@@ -10,14 +13,32 @@ interface Props {
 }
 
 const TitledInput = (props: Props) => {
-  const { title, placeholder, type, onClickButton, titleButton, errorMessage } =
-    props;
+  const {
+    title,
+    placeholder,
+    type,
+    onClickButton,
+    titleButton,
+    errorMessage,
+    value,
+    changeValue,
+  } = props;
+
+  const setChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    changeValue && changeValue(e.target.value);
+  };
+
   return (
     <Container>
       <Content>
         <Fields>
           <label>{title}</label>
-          <Input placeholder={placeholder} type={type || "text"} />
+          <Input
+            value={value}
+            onChange={setChangeValue}
+            placeholder={placeholder}
+            type={type || "text"}
+          />
         </Fields>
         {titleButton && <Button onClick={onClickButton}>{titleButton}</Button>}
       </Content>
