@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundLogin from "../../assets/backgroundLogin.svg";
+import backgroundLogin from "../../../assets/backgroundLogin.svg";
 
 export const Container = styled.div`
   display: flex;

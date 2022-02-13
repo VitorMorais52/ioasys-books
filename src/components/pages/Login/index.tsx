@@ -10,7 +10,7 @@ import TitledInput from "../../common/TitledInput";
 
 //styles
 import { Container, Content, Header, Wrapper } from "./styles";
-import imgLogo from "../../assets/logo.svg";
+import imgLogo from "../../../assets/logo.svg";
 
 interface UserFields {
   email: string;
