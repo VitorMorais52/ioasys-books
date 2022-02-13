@@ -8,6 +8,7 @@ interface Props {
   type: string;
   placeholder?: string;
   titleButton?: string;
+  typeButton?: "button" | "submit" | "reset";
   onClickButton?: () => void;
   errorMessage?: string;
 }
@@ -19,6 +20,7 @@ const TitledInput = (props: Props) => {
     type,
     onClickButton,
     titleButton,
+    typeButton,
     errorMessage,
     value,
     changeValue,
@@ -38,9 +40,14 @@ const TitledInput = (props: Props) => {
             onChange={setChangeValue}
             placeholder={placeholder}
             type={type || "text"}
+            autoComplete="on"
           />
         </Fields>
-        {titleButton && <Button onClick={onClickButton}>{titleButton}</Button>}
+        {titleButton && (
+          <Button type={typeButton || "button"} onClick={onClickButton}>
+            {titleButton}
+          </Button>
+        )}
       </Content>
       <SpanError isVisible={!!errorMessage}>{errorMessage}</SpanError>
     </Container>

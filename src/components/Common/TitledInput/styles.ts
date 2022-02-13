@@ -58,12 +58,12 @@ export const SpanError = styled.span<SpanErrorProps>`
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   position: absolute;
-  
+
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-  
+
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(2px);
@@ -74,12 +74,12 @@ export const SpanError = styled.span<SpanErrorProps>`
     left: 8%;
     margin-left: -5px;
     position: absolute;
-    
+
     border-width: 8px;
     border-style: solid;
-    border-color: transparent transparent rgba(255, 255, 255, 0.4); transparent;
+    border-color: transparent transparent rgba(255, 255, 255, 0.4) transparent;
   }
 
   z-index: 1;
-  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")}
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
 `;
