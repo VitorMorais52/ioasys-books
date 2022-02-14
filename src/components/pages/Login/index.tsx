@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios, { AxiosError } from "axios";
 
 //services
 import API from "../../../services/Api";
@@ -18,25 +19,29 @@ interface UserFields {
 }
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { storeUser } = useContext(UserContext);
-
   const initialState = () => ({ email: "", password: "" });
   const [fields, setFields] = useState<UserFields>(initialState);
+  const [error, setError] = useState<string>("");
+
+  const navigate = useNavigate();
+  const { storeUser } = useContext(UserContext);
 
   const setLogin = async () => {
     try {
       const response = await API.post("auth/sign-in", {
-        email: "desafio@ioasys.com.br",
-        password: "12341234",
+        ...fields,
       });
       const { data, headers } = response;
 
       storeUser({ ...data, headers });
+      setError("");
 
       navigate("/");
-    } catch (err) {
-      console.log("err", err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const response = error.response;
+        if (response?.status === 401) setError(response?.data.errors.message);
+      }
     }
   };
 
@@ -44,6 +49,10 @@ const Login = () => {
     event.preventDefault();
     setLogin();
   };
+
+  useEffect(() => {
+    if (error) setError("");
+  }, [fields]);
 
   return (
     <Container>
@@ -71,7 +80,7 @@ const Login = () => {
                 type="password"
                 titleButton="Entrar"
                 typeButton={"submit"}
-                errorMessage="Email e/ou senha incorretos."
+                errorMessage={error}
               />
             </Wrapper>
           </form>
