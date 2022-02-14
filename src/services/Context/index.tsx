@@ -16,6 +16,7 @@ type PropsUserContext = {
   storeUser: (newUser: UserType) => void;
   logout: () => void;
   isAuthenticated: () => {};
+  getAuth: () => AuthProps;
 };
 
 const DEFAULT_VALUE = {
@@ -24,6 +25,15 @@ const DEFAULT_VALUE = {
   storeUser: () => {},
   logout: () => {},
   isAuthenticated: () => false,
+  getAuth: () => ({
+    authorization: "",
+    token: "",
+  }),
+};
+
+type AuthProps = {
+  authorization: string;
+  token: string;
 };
 
 export const UserContext = createContext<PropsUserContext>(DEFAULT_VALUE);
@@ -37,20 +47,13 @@ export const UserProvider: React.FC = ({ children }) => {
 
     const objUser = JSON.parse(storagedUser);
     setUser(objUser);
-
-    API.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${objUser.headers.authorization}`;
   }, []);
 
   const storeUser = (newUser: UserType) => {
+    const token = Reflect.get(newUser.headers, "refresh-token");
     setUser(newUser);
-
     localStorage.setItem("@App:user", JSON.stringify(newUser));
-
-    API.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${newUser.headers.authorization}`;
+    localStorage.setItem("@App:token", JSON.stringify(token));
   };
 
   const logout = () => {
@@ -65,9 +68,21 @@ export const UserProvider: React.FC = ({ children }) => {
     return true;
   }
 
+  function getAuth(): AuthProps {
+    const userStoraged = localStorage.getItem("@App:user");
+    const tokenStoraged = localStorage.getItem("@App:token");
+    if (!userStoraged || !tokenStoraged)
+      return { authorization: "", token: "" };
+
+    const objUser = JSON.parse(userStoraged);
+    const token = JSON.parse(tokenStoraged);
+    const authorization = objUser.headers.authorization;
+    return { authorization, token };
+  }
+
   return (
     <UserContext.Provider
-      value={{ user, setUser, storeUser, logout, isAuthenticated }}
+      value={{ user, setUser, storeUser, logout, isAuthenticated, getAuth }}
     >
       {children}
     </UserContext.Provider>
