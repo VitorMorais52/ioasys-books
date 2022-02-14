@@ -41,6 +41,7 @@ const TitledInput = (props: Props) => {
             placeholder={placeholder}
             type={type || "text"}
             autoComplete="on"
+            maxLength={40}
           />
         </Fields>
         {titleButton && (

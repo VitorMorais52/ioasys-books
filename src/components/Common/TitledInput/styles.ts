@@ -30,6 +30,7 @@ export const Content = styled.div`
 
 export const Fields = styled.div`
   display: flex;
+  width: 70%;
   flex-direction: column;
 `;
 
