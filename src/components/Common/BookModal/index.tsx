@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import Modal from "react-modal";
 
 import { Container, Book, Key, Value } from "./styles";
+
+import imgDefaultBook from "../../../assets/defaultBook.svg";
 
 type BookProps = {
   authors: Array<String>;
@@ -25,6 +26,9 @@ interface BookModalProps {
 }
 
 const customStylesModal = {
+  overlay: {
+    overflow: "scroll",
+  },
   content: {
     top: "50%",
     left: "50%",
@@ -49,7 +53,7 @@ const BookModal = ({ isOpen, onRequestClose, book }: BookModalProps) => {
         <Book>
           <div className="contentBook">
             <div className="imgBook">
-              <img src={book?.imageUrl || ""} alt="book"></img>
+              <img src={book?.imageUrl || imgDefaultBook} alt="book"></img>
             </div>
             <div className="infoBook">
               <div className="sup">

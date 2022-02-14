@@ -8,18 +8,28 @@ export const Book = styled.div`
 
   .contentBook {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin: 2rem;
+
+    @media (min-width: 460px) {
+      grid-template-columns: 1fr 1fr;
+      margin: 2rem;
+    }
+    @media (max-width: 460px) {
+      max-width: 240px;
+      grid-template-columns: 1fr;
+    }
   }
 
   .imgBook {
     display: flex;
+    justify-content: center;
     filter: drop-shadow(0px 12px 18px rgba(0, 0, 0, 0.3));
   }
 
   img {
-    /* height: 130px; */
+    @media (max-width: 460px) {
+      height: 351px;
+    }
   }
 
   .infoBook {
@@ -41,6 +51,10 @@ export const Book = styled.div`
       font-size: 12px;
       color: #ab2680;
     }
+
+    @media (max-width: 460px) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   .mid {
@@ -49,6 +63,9 @@ export const Book = styled.div`
     }
     span:first-child {
       font-weight: 500;
+    }
+    @media (max-width: 460px) {
+      margin-bottom: 1.5rem;
     }
   }
 
