@@ -6,10 +6,7 @@ import useApi from "../../../services/Hooks/useApi";
 
 //components
 import Logo from "../../../components/common/Logo";
-import iconLogout from "../../../assets/iconLogout.svg";
-import imgDefaultBook from "../../../assets/defaultBook.svg";
-import iconArrowLeft from "../../../assets/arrowLeft.svg";
-import iconArrowRight from "../../../assets/arrowRight.svg";
+import BookModal from "../../../components/common/BookModal";
 
 //styles
 import {
@@ -24,6 +21,10 @@ import {
   Book,
   NavGrid,
 } from "./styles";
+import iconLogout from "../../../assets/iconLogout.svg";
+import imgDefaultBook from "../../../assets/defaultBook.svg";
+import iconArrowLeft from "../../../assets/arrowLeft.svg";
+import iconArrowRight from "../../../assets/arrowRight.svg";
 
 type BookProps = {
   authors: Array<String>;
@@ -50,6 +51,7 @@ type BooksProps = {
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [books, setBooks] = useState<BooksProps>();
+  const [indexSelectedBook, setIndexSelectedBook] = useState(0);
   const { user, logout } = useContext(UserContext);
 
   const { data, isFetching } = useApi<BooksProps>("/books", {
@@ -81,6 +83,19 @@ const Home = () => {
     }
   }, [data]);
 
+  ////////////////////////////////////////////////////
+  const [isBookModalOpen, setIsBookModalOpen] = useState(false);
+
+  function handleOpenBookModal(indexBook: number) {
+    setIndexSelectedBook(indexBook);
+    setIsBookModalOpen(true);
+  }
+
+  function handleCloseBookModal() {
+    setIsBookModalOpen(false);
+  }
+  ////////////////////////////////////////////////////
+
   return (
     <Container>
       <Content>
@@ -99,7 +114,7 @@ const Home = () => {
           <GridBooks>
             {books?.data.map((book: BookProps, index) => {
               return (
-                <Book key={index}>
+                <Book key={index} onClick={() => handleOpenBookModal(index)}>
                   <div className="contentBook">
                     <div className="imgBook">
                       <img
@@ -137,6 +152,11 @@ const Home = () => {
             </div>
           </NavGrid>
         </Main>
+        <BookModal
+          isOpen={isBookModalOpen}
+          onRequestClose={handleCloseBookModal}
+          book={books?.data[indexSelectedBook]}
+        />
       </Content>
     </Container>
   );

@@ -120,6 +120,7 @@ export const Book = styled.div`
 
   .imgBook {
     display: flex;
+    filter: drop-shadow(0px 12px 18px rgba(0, 0, 0, 0.3));
   }
 
   img {
