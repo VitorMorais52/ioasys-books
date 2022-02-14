@@ -64,7 +64,6 @@ export const Main = styled.div`
 
 export const GridBooks = styled.div`
   display: grid;
-  min-height: 518px;
   gap: 1rem;
   @media (min-width: 1365px) {
     grid-template-columns: repeat(4, 1fr);

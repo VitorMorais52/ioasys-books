@@ -49,9 +49,10 @@ type BooksProps = {
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [books, setBooks] = useState<BooksProps>();
   const { user, logout } = useContext(UserContext);
 
-  const { data: books, isFetching } = useApi<BooksProps>("/books", {
+  const { data, isFetching } = useApi<BooksProps>("/books", {
     params: {
       page: currentPage,
       amount: 12,
@@ -74,6 +75,12 @@ const Home = () => {
     }
   };
 
+  useEffect(() => {
+    if (data) {
+      setBooks(data);
+    }
+  }, [data]);
+
   return (
     <Container>
       <Content>
@@ -90,8 +97,6 @@ const Home = () => {
         </Header>
         <Main>
           <GridBooks>
-            {isFetching && <p>Loading...</p>}
-
             {books?.data.map((book: BookProps, index) => {
               return (
                 <Book key={index}>
