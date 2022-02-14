@@ -1,9 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    :root {
-        /* --background: #f0f2f5; */
-    }
+
 
     * {
         margin: 0;
@@ -21,7 +19,9 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
     }
 
-    h1, h2, h3, h4, h5, h6, strong {
-        font-weight: 500;
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 28px;
+        font-weight: 300;
+        line-height: 40px;;
     }
 `;
