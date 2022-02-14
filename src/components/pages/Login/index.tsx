@@ -7,10 +7,10 @@ import { UserContext } from "../../../services/Context";
 
 //common components
 import TitledInput from "../../common/TitledInput";
+import Logo from "../../../components/common/Logo";
 
 //styles
 import { Container, Content, Header, Wrapper } from "./styles";
-import imgLogo from "../../../assets/logo.svg";
 
 interface UserFields {
   email: string;
@@ -49,8 +49,7 @@ const Login = () => {
     <Container>
       <Content>
         <Header>
-          <img src={imgLogo} alt="logo" />
-          <span>Books</span>
+          <Logo />
         </Header>
         <main>
           <form autoComplete="on" onSubmit={handleSubmit}>
