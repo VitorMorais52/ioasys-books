@@ -24,6 +24,9 @@ yarn build
 yarn lint
 ```
 
-### Customize configuration
+### Application Login
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+email: desafio@ioasys.com.br
+senha: 12341234
+```
