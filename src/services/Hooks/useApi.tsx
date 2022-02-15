@@ -1,9 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { useState, useEffect, useContext } from "react";
 
-import { UserContext } from "../Context/";
-
 //services
+import { UserContext } from "../Context/";
 import API from "../Api";
 
 function useApi<T = unknown>(url: string, options?: AxiosRequestConfig) {

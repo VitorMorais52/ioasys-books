@@ -54,7 +54,7 @@ const Home = () => {
   const [indexSelectedBook, setIndexSelectedBook] = useState(0);
   const { user, logout } = useContext(UserContext);
 
-  const { data, isFetching } = useApi<BooksProps>("/books", {
+  const { data } = useApi<BooksProps>("/books", {
     params: {
       page: currentPage,
       amount: 12,
@@ -83,7 +83,6 @@ const Home = () => {
     }
   }, [data]);
 
-  ////////////////////////////////////////////////////
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
 
   function handleOpenBookModal(indexBook: number) {
@@ -94,7 +93,6 @@ const Home = () => {
   function handleCloseBookModal() {
     setIsBookModalOpen(false);
   }
-  ////////////////////////////////////////////////////
 
   return (
     <Container>
