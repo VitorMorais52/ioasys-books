@@ -30,6 +30,9 @@ export const Book = styled.div`
     @media (max-width: 460px) {
       height: 351px;
     }
+    @media (min-width: 460px) {
+      height: 512px;
+    }
   }
 
   .infoBook {

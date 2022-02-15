@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 
 import { Container, Book, Key, Value } from "./styles";
+import { useMediaQuery } from "react-responsive";
 
 import imgDefaultBook from "../../../assets/defaultBook.svg";
 
@@ -25,24 +27,43 @@ interface BookModalProps {
   book: BookProps | undefined;
 }
 
-const customStylesModal = {
-  overlay: {
-    overflow: "scroll",
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    boxShadow: "0px 16px 80px rgba(0, 0, 0, 0.32)",
-  },
-};
-
 Modal.setAppElement("#root");
 
 const BookModal = ({ isOpen, onRequestClose, book }: BookModalProps) => {
+  const initialState = {
+    overlay: {
+      overflow: "scroll",
+    },
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      boxShadow: "0px 16px 80px rgba(0, 0, 0, 0.32)",
+    },
+  };
+
+  const [customStylesModal, setCustomStylesModal] = useState(initialState);
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 460px)",
+  });
+
+  useEffect(() => {
+    if (!isDesktopOrLaptop)
+      setCustomStylesModal({
+        ...customStylesModal,
+        content: { ...customStylesModal.content, top: "80%" },
+      });
+    else
+      setCustomStylesModal({
+        ...customStylesModal,
+        content: { ...customStylesModal.content, top: "50%" },
+      });
+  }, [isDesktopOrLaptop]);
+
   return (
     <Modal
       isOpen={isOpen}
