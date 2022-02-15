@@ -1,7 +1,9 @@
 import React from "react";
+
+//styles
 import { Container, Content, Fields, Input, Button, SpanError } from "./styles";
 
-interface Props {
+type Props = {
   value: string;
   changeValue: (value: string) => void;
   title: string;
@@ -11,7 +13,7 @@ interface Props {
   typeButton?: "button" | "submit" | "reset";
   onClickButton?: () => void;
   errorMessage?: string;
-}
+};
 
 const TitledInput = (props: Props) => {
   const {

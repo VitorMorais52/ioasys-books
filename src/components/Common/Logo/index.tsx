@@ -1,9 +1,10 @@
+//styles
 import { Container } from "./styles";
 import imgLogo from "../../../assets/logo.svg";
 
-interface LogoProps {
+type LogoProps = {
   dark?: boolean;
-}
+};
 
 const Logo = ({ dark }: LogoProps): JSX.Element => {
   return (

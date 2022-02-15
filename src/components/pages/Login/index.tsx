@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 //services
 import API from "../../../services/Api";
@@ -13,10 +13,10 @@ import Logo from "../../../components/common/Logo";
 //styles
 import { Container, Content, Header, Wrapper } from "./styles";
 
-interface UserFields {
+type UserFields = {
   email: string;
   password: string;
-}
+};
 
 const Login = () => {
   const initialState = () => ({ email: "", password: "" });

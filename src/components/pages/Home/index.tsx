@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../services/Context";
 import useApi from "../../../services/Hooks/useApi";
 
-//components
+//common components
 import Logo from "../../../components/common/Logo";
 import BookModal from "../../../components/common/BookModal";
 

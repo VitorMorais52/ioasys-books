@@ -93,6 +93,12 @@ export const Book = styled.div`
       color: #999999;
       font-size: 12px;
     }
+
+    img {
+      width: 17px;
+      height: 14px;
+      padding-top: 3px;
+    }
   }
 `;
 

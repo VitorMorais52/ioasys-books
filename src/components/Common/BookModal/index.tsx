@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 
+//styles
 import { Container, Book, Key, Value } from "./styles";
 import { useMediaQuery } from "react-responsive";
 
 import imgDefaultBook from "../../../assets/defaultBook.svg";
+import iconQuotationMarks from "../../../assets/quotationMarks.svg";
 
 type BookProps = {
   authors: Array<String>;
@@ -21,11 +23,11 @@ type BookProps = {
   title: string;
 };
 
-interface BookModalProps {
+type BookModalProps = {
   isOpen: boolean;
   onRequestClose: () => void;
   book: BookProps | undefined;
-}
+};
 
 Modal.setAppElement("#root");
 
@@ -101,7 +103,10 @@ const BookModal = ({ isOpen, onRequestClose, book }: BookModalProps) => {
               </div>
               <div className="foot">
                 <span>RESENHA DA EDITORA</span>
-                <p>{book?.description}</p>
+                <p>
+                  <img src={iconQuotationMarks} alt={"quotation marks"}></img>
+                  {book?.description}
+                </p>
               </div>
             </div>
           </div>

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-interface Props {
+type Props = {
   dark?: boolean;
-}
+};
 
 export const Container = styled.div<Props>`
   display: flex;
